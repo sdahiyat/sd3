@@ -1,32 +1,40 @@
-import Link from 'next/link'
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-12">
-      <div className="mx-auto max-w-4xl px-6 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Quick Sheets
-        </h1>
-        <p className="mt-6 text-lg leading-8 text-gray-600">
-          AI-powered financial advisory platform enabling advisors to upload client documents, 
-          receive AI-generated insights, and manage client relationships—while clients can chat 
-          with their own financial data and receive personalized guidance.
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Link
-            href="/auth/login"
-            className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/auth/signup"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Sign Up <span aria-hidden="true">→</span>
-          </Link>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="z-10 max-w-5xl w-full items-center justify-center font-mono text-sm lg:flex">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-8">Quick Sheets</h1>
+          <p className="text-xl text-muted-foreground mb-12">
+            AI-Powered Financial Advisory Platform
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="border rounded-lg p-6">
+              <h2 className="text-2xl font-semibold mb-4">For Advisors</h2>
+              <p className="text-muted-foreground mb-4">
+                Upload client documents, receive AI-generated insights, and manage client relationships.
+              </p>
+              <div className="space-y-2 text-left text-sm">
+                <div>• Document upload and management</div>
+                <div>• AI-generated summaries and opportunities</div>
+                <div>• Customizable client proposals</div>
+                <div>• Client relationship management</div>
+              </div>
+            </div>
+            <div className="border rounded-lg p-6">
+              <h2 className="text-2xl font-semibold mb-4">For Clients</h2>
+              <p className="text-muted-foreground mb-4">
+                Chat with your financial data and receive personalized guidance from AI.
+              </p>
+              <div className="space-y-2 text-left text-sm">
+                <div>• View your financial documents</div>
+                <div>• Chat with your personal data</div>
+                <div>• Get general financial advice</div>
+                <div>• Review advisor insights</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
