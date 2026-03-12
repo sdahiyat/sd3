@@ -1,6 +1,6 @@
 export type UserRole = 'advisor' | 'client'
 
-export interface User {
+export type User = {
   id: string
   email: string
   role: UserRole
@@ -8,53 +8,60 @@ export interface User {
   updated_at: string
 }
 
-export interface Client {
+export type Client = {
   id: string
   advisor_id: string
   name: string
   email: string
   phone?: string
   notes?: string
+  insight_status: InsightStatus
   created_at: string
   updated_at: string
   archived_at?: string
 }
 
+export type InsightStatus = 'needs_documents' | 'processing' | 'ready' | 'failed'
+
 export type DocumentStatus = 'uploading' | 'uploaded' | 'processing' | 'ready' | 'failed'
 
-export type DocumentCategory = 'Tax Return' | 'Investment Statement' | 'Insurance Policy' | 'Estate Document' | 'Bank Statement' | 'Other/Unknown'
+export type DocumentCategory = 
+  | 'tax_return'
+  | 'investment_statement' 
+  | 'insurance_policy'
+  | 'estate_document'
+  | 'bank_statement'
+  | 'other'
 
-export interface Document {
+export type Document = {
   id: string
   client_id: string
+  advisor_id: string
   filename: string
   file_type: string
   file_size: number
   status: DocumentStatus
   category?: DocumentCategory
-  uploaded_by: string
-  created_at: string
-  updated_at: string
   extracted_text?: string
   structured_data?: Record<string, any>
-  error_message?: string
-}
-
-export type InsightStatus = 'needs_documents' | 'processing' | 'ready' | 'failed'
-
-export interface Insight {
-  id: string
-  client_id: string
-  type: 'summary' | 'opportunities' | 'proposal'
-  content: string
-  status: InsightStatus
-  version: number
+  storage_path: string
   created_at: string
   updated_at: string
-  error_message?: string
+  deleted_at?: string
 }
 
-export interface ChatMessage {
+export type Insight = {
+  id: string
+  client_id: string
+  advisor_id: string
+  type: 'summary' | 'opportunities' | 'proposal'
+  content: string
+  version: number
+  is_latest: boolean
+  created_at: string
+}
+
+export type ChatMessage = {
   id: string
   client_id: string
   role: 'user' | 'assistant'
@@ -68,7 +75,7 @@ export interface ChatMessage {
   created_at: string
 }
 
-export interface VectorRecord {
+export type VectorEmbedding = {
   id: string
   client_id: string
   document_id: string
@@ -77,4 +84,23 @@ export interface VectorRecord {
   document_category: DocumentCategory
   embedding: number[]
   created_at: string
+}
+
+export interface DocumentProcessingResult {
+  text: string
+  category: DocumentCategory
+  structured_data: Record<string, any>
+}
+
+export interface SimilaritySearchResult {
+  chunk_text: string
+  document_id: string
+  document_name: string
+  similarity_score: number
+}
+
+export interface InsightGenerationContext {
+  structured_data: Record<string, any>[]
+  relevant_chunks: SimilaritySearchResult[]
+  client: Client
 }
