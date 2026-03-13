@@ -1,12 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Quick Sheets - AI-Powered Financial Advisory Platform',
-  description: 'AI-powered financial advisory platform for advisors and clients',
+  description: 'Empowering financial advisors with AI-driven insights and enabling clients to chat with their financial data.',
 }
 
 export default function RootLayout({
@@ -16,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="min-h-screen bg-gray-50 antialiased">
+        {children}
+      </body>
     </html>
   )
 }
